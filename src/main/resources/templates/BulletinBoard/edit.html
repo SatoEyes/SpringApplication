@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>編集</title>
+<style type="text/css">
+table{
+	border-collapse: collapse;
+}
+.col_title{width:100px;}
+.col_data{width:400px;}
+.col_content{height:150px;}
+form{display: inline;}
+</style>
+</head>
+<body>
+<h1>掲示板編集</h1>
+<form method="post" action="/update" th:object="${formModel}">
+	<input type="hidden" name="id" th:value="*{id}">
+	<table border="1">
+		<tr>
+			<th class="col_title">タイトル</th>
+			<td class="col_data">
+				<input type="text" name="title" th:value="*{title}" size="20" maxlength="50" />
+			</td>
+		</tr>
+		<tr>
+			<th class="col_content">内容</th>
+			<td>
+				<input type="text" name="content" th:value="*{content}" size="80" maxlength="400"  style="height:150px;"/>
+			</td>
+		</tr>
+		<tr>
+			<th>投稿者</th>
+			<td>
+				<input type="text" name="createUser" th:value="*{createUser}" size="30" maxlength="15" />
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<input type="submit" value="更新" />
+</form>
+<form action="/">
+	<input type="submit" value="戻る" />
+</form>
+</body>
+</html>

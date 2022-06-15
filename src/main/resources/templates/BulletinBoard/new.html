@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>掲示板登録</title>
+<style type="text/css">
+table{
+	border-collapse: collapse;
+}
+.col_title{width:100px;}
+.col_data{width:400px;}
+.col_content{height:150px;}
+form{display: inline;}
+</style>
+</head>
+<body>
+<h1>掲示板登録</h1>
+    <table>
+        <tr th:if="${validationError}" th:each="error : ${validationError}">
+            <td th:text="${error}"></td>
+        </tr>
+    </table>
+<form method="post" action="/create" th:object="${formModel}">
+	<input type="hidden" >
+	<table border="1">
+		<tr>
+			<th class="col_title">タイトル</th>
+			<td class="col_data">
+				<input type="text" name="title" th:value="*{title}" size="20" maxlength="50" />
+			</td>
+		</tr>
+		<tr>
+			<th class="col_content">内容</th>
+			<td>
+				<input type="text" name="content" th:value="*{content}" size="80" maxlength="400"  style="height:150px;"/>
+			</td>
+		</tr>
+		<tr>
+			<th>投稿者</th>
+			<td>
+				<input type="text" name="createUser" th:value="*{createUser}" size="30" maxlength="15" />
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<input type="submit" value="登録" />
+</form>
+<form action="/">
+	<input type="submit" value="戻る" />
+</form>
+</body>
+</html>
